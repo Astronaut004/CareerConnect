@@ -12,4 +12,8 @@ router.route('/jobs/:id/applications')
 router.route('/applications/:id')
     .delete(protect, deleteApplication);
 
+
+// router.route('/').patch(protect,function)
+
+
 export default router;

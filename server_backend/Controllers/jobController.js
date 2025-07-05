@@ -1,7 +1,7 @@
-import pool from "../models/db";
+import pool from "../models/db.js";
 
 //create new job
-const createJob = async (req, res) => {
+export const createJob = async (req, res) => {
     const { position, company, status = 'pending' } = req.body;
 
 

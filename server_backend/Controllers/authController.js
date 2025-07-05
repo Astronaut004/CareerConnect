@@ -1,6 +1,7 @@
-import pool from "../models/db";
+import pool from "../models/db.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+
 
 
 export const registerUser = async (req, res) => {

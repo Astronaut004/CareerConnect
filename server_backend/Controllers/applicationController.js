@@ -1,4 +1,4 @@
-import pool from "../models/db";
+import pool from "../models/db.js";
 
 
 // Apply to a specific job
