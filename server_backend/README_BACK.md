@@ -9,41 +9,14 @@
 ## API Endpoints
 ### Final API URLs
 
-http://localhost:5000/api
-├── auth/
-│   ├── POST /register        (Register User)
-│   ├── POST /login           (Login User)
-│
-├── jobs/
-│   ├── GET /                 (Get all Jobs)
-│   ├── POST /                (Create a Job)
-│   ├── GET /:id              (Get single Job)
-│   ├── PATCH /:id            (Update Job)
-│   ├── DELETE /:id           (Delete Job)
-│   ├── :id/applications
-│       ├── POST              (Apply to Job)
-│       ├── GET               (Get Applications for Job)
-│
-├── applications/
-│   ├── DELETE /:id           (Delete Application)
+![alt text](<Screenshot 2025-07-05 234325.png>)
 
 
 
 ### How mounting works internally
 
 
-Your Main App (server.js)
-├── Mount /api/auth → authRoutes.js
-│   ├── /register
-│   ├── /login
-│
-├── Mount /api/jobs → jobRoutes.js
-│   ├── /
-│   ├── /:id
-│   ├── /:id/applications (delegated to applicationRoutes.js)
-│
-├── Mount /api → applicationRoutes.js
-    ├── /applications/:id
+![alt text](<Screenshot 2025-07-05 234405.png>)
 
 
 
