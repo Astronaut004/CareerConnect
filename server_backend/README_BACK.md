@@ -1,19 +1,7 @@
 # Folder Structure (for reference)
 
-server_backend/
-├── controllers/
-│   ├── authController.js
-│   ├── jobController.js
-│   └── applicationController.js
-├── routes/
-│   ├── authRoutes.js
-│   ├── jobRoutes.js
-│   └── applicationRoutes.js
-├── models/
-│   └── db.js
-├── middlewares/
-│   └── authMiddleware.js
-├── server.js
+![alt text](<Screenshot 2025-07-05 234159.png>)
+
 
 
 # Visual Diagram of Route Mapping
