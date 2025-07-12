@@ -1,14 +1,14 @@
 import express from "express";
 import pool from "./models/db.js";
 import dotenv from 'dotenv';
-// import cors from 'cors';
+import cors from 'cors';
 import authRoutes from './routes/authRoutes.js';
 import jobRoutes from './routes/jobRoutes.js';          // 👈 Add this
 import applicationRoutes from './routes/applicationRoutes.js'; // 👈 Add this
 
 const app = express();
 
-// app.use(cors());
+app.use(cors());
 
 
 app.use(express.json()); // 👈 Add this so req.body works!
