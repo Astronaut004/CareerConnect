@@ -42,8 +42,8 @@ const delResponse = async () => {
   }, [id, navigate]);
 
   return (
-    <div className="text-center mt-10 text-lg text-gray-700">
-      Deleting job...
+    <div className="text-center mt-10 text-lg text-amber-600 font-medium">
+      Removing job...
     </div>
   );
 };
