@@ -5,7 +5,7 @@ import {
     getJobById,
     updateJob,
     deleteJob
-} from '../controllers/jobController.js';
+} from '../Controllers/jobController.js';
 import protect from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
@@ -15,6 +15,6 @@ router.route('/').get(protect, getJobs).post(protect, createJob);
 router
     .route('/:id')
     .get(protect, getJobById)
-    .patch(protect,updateJob)
+    .put(protect,updateJob)
     .delete(protect,deleteJob);
 export default router;
