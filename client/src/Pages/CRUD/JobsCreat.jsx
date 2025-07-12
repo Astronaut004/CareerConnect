@@ -29,7 +29,6 @@ const JobsCreat = () => {
           navigate('/dashboard');
         }, 1000);
       }
-
     }
     catch(err) {
       console.log(err);
