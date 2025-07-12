@@ -23,7 +23,7 @@ export const registerUser = async (req, res) => {
     }
     catch (err) {
         console.log(err);
-        res.status(500).json({error: 'Registeration failed'});
+        res.status(500).json({message: 'Registeration failed'});
     }
 };
 
@@ -35,9 +35,9 @@ export const loginUser = async (req, res) => {
         const userResult = await pool.query('SELECT * FROM Users WHERE email = $1', [email]);
         const user = userResult.rows[0];
 
-        if(!user) return res.status(400).json({error: 'User not found'});
+        if(!user) return res.status(400).json({message: 'User not found'});
         const isMatch = await bcrypt.compare(password, user.password);
-        if(!isMatch) return res.status(401).json({error: 'Wrong credentials'});
+        if(!isMatch) return res.status(401).json({message: 'Wrong credentials'});
 
         const token = jwt.sign(
             {userId: user.id},
@@ -47,9 +47,9 @@ export const loginUser = async (req, res) => {
 
         res.status(200).json({user: {id : user.id, name: user.name, email: user.email}, token});
     }
-    catch(error) {
-        console.log(error);
-        res.status(500).json({error: 'Login failed'});
+    catch(err) {
+        console.log(err);
+        res.status(500).json({message: 'Login failed'});
         
     }
 };

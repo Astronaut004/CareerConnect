@@ -56,7 +56,7 @@ export const getJobById = async (req,res) => {
 //update job
 
 export const updateJob = async (req, res) => {
-    const { id } = req.params;
+    const id  = parseInt(req.params.id, 10);
     const { position, company, status } = req.body;
 
     try {
@@ -87,7 +87,8 @@ export const deleteJob = async (req, res) => {
         );
 
         if (result.rows.length === 0) {
-            return res.status(404).json({ error: 'Job not found or not authorized' });
+            // No job found to delete
+            return res.status(200).json({ message: 'Job already deleted or not found' });
         }
 
         res.status(200).json({ message: 'Job deleted successfully' });
