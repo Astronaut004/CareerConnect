@@ -22,7 +22,7 @@ export const createJob = async (req, res) => {
 //get all job
 export const getJobs = async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM jobs WHERE created_by = $1', [req.user]);
+    const result = await pool.query('SELECT * FROM jobs ');
     res.status(200).json(result.rows);
   } catch (err) {
     console.error(err);
@@ -97,3 +97,4 @@ export const deleteJob = async (req, res) => {
         res.status(500).json({ error: 'Failed to delete job' });
     }
 };
+

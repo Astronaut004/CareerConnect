@@ -16,7 +16,7 @@ app.use(express.json()); // 👈 Add this so req.body works!
 // Mount Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/jobs', jobRoutes);                  // 👈 Mount Jobs API
-app.use('/api', applicationRoutes);
+app.use('/api/kaju', applicationRoutes);
 
 app.get("/", async (req, res) => {
     try {

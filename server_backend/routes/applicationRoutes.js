@@ -1,19 +1,20 @@
 import express from 'express';
-import { applyToJob, getApplications, deleteApplication } from '../controllers/applicationController.js';
-import protect from '../middlewares/authMiddleware.js';
+import { applyToJob , getApplications, withdrawApplication} from '../Controllers/applicationController.js';
+ import protect from '../middlewares/authMiddleware.js';
 
 
-const router = express.Router();
+ const router = express.Router();
 
-router.route('/jobs/:id/applications')
+   router
+   .route('/jobs/apply')
     .post(protect, applyToJob)
-    .get(protect, getApplications)
+     .get(protect, getApplications)
 
-router.route('/applications/:id')
-    .delete(protect, deleteApplication);
-
-
-// router.route('/').patch(protect,function)
+//  router
+//  .route('/jobs/apply/:id')
+//     .delete(protect, withdrawApplication);
 
 
-export default router;
+// // router.route('/').patch(protect,function)
+
+ export default router;
