@@ -81,6 +81,13 @@ const Jobs = () => {
                   >
                     Remove Job
                   </Link>
+
+                  <Link 
+                    to={`/jobs/apply/${job.id}`} 
+                    className="cursor-pointer px-3 py-1 bg-yellow-600 text-white rounded hover:bg-yellow-700"
+                  >
+                    Apply Job
+                  </Link>
                 </div>
               </div>
             ))}
