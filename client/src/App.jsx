@@ -16,6 +16,7 @@ import Index from './Pages/Index';
 import Jobs from './Pages/CRUD/Jobs';
 import JobsDel from './Pages/CRUD/JobsDel'
 import JobsCreat from './Pages/CRUD/JobsCreat'
+import JobsApply from './Pages/CRUD/JobsApply'
 import JobsUpd from './Pages/CRUD/JobsUpd'
 import NotFound from './Pages/NotFound';
 function App() {
@@ -45,9 +46,12 @@ function App() {
           <Route path='/job' element={<Jobs  />}/>
           <Route path='/dashboard' element={<Index  />}/>
           <Route path='/jobs/create' element={<JobsCreat  />}/>
-          <Route path='/jobs' element={<Jobs  />}/>
+          <Route path='/jobs/apply/:id' element={<JobsApply  />}/>
           <Route path='/jobs/update/:id' element={<JobsUpd />}/>
           <Route path='/jobs/delete/:id' element={<JobsDel  />}/>
+          <Route path='/jobs' element={<Jobs />} />  
+          <Route path='/applications' element={<Applications  />}/>
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

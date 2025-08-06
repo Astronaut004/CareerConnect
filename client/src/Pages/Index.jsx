@@ -44,6 +44,12 @@ const Index = () => {
         >
           📄 View Jobs
         </Link>
+        <Link
+          to="/Applications"
+          className="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 rounded-lg text-center shadow-md"
+        >
+          📄 View Applications
+        </Link>
       </div>
     </div>
   );
