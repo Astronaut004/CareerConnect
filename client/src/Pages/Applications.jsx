@@ -6,6 +6,38 @@ const Applications = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+
+  const handleWithdraw = async (id, email) => {
+    const confirmWithdraw = window.confirm("Are you sure you want to withdraw this application?");
+    if (!confirmWithdraw) return;
+
+    try {
+      const response = await fetch(`http://localhost:5000/api/kaju/jobs/withdraw/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({ applicant_email: email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to withdraw application");
+      }
+
+      alert(data.message);
+
+      // Remove the withdrawn application from the UI
+      setApplications((prev) => prev.filter((app) => app.id !== id));
+    } catch (error) {
+      console.error("Withdrawal failed:", error);
+      alert("Something went wrong. Please try again.");
+    }
+  };
+
+  
   const fetchApplicationsJobs = async () => {
     try {
       const response = await fetch('http://localhost:5000/api/kaju/jobs/apply', {
@@ -58,25 +90,24 @@ const Applications = () => {
                 <p className="text-stone-600">
                   Status:{" "}
                   <span
-                    className={`font-semibold ${
-                      applyjob.status === "pending"
+                    className={`font-semibold ${applyjob.status === "pending"
                         ? "text-yellow-600"
                         : applyjob.status === "interview"
-                        ? "text-blue-600"
-                        : "text-red-600"
-                    }`}
+                          ? "text-blue-600"
+                          : "text-red-600"
+                      }`}
                   >
                     {applyjob.status}
                   </span>
                 </p>
 
                 <div className="mt-3 flex gap-3">
-                  <Link 
-                    to={`/jobs/update/${applyjob.id}`} 
-                    className="cursor-pointer px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600"
+                  <button
+                    onClick={() => handleWithdraw(applyjob.id, applyjob.applicant_email)}
+                    className="cursor-pointer px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
                   >
                     Withdraw Application
-                  </Link>
+                  </button>
                 </div>
               </div>
             ))}
