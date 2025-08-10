@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { useUserStore } from "../store/userstore"; 
 const Register = () => {
   const [name, setName] = useState("");
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
   const navigate = useNavigate();
-
+ const setUser = useUserStore((state) => state.setUser);
+  const clearUser = useUserStore((state) => state.clearUser);
+  
   const authHandle = async (e) => {
     e.preventDefault(); // Prevent page reload
 
@@ -29,6 +31,10 @@ const Register = () => {
         throw new Error("Failed to register");
       }
       const data = await response.json();
+
+     setUser(data.user.id, data.token); // Store user ID and token in Zustand store
+
+
       console.log(`Registration successful: ${data}`);
       navigate("/login");
     } catch (error) {

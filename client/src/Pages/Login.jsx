@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useUserStore } from "../store/userstore";
 
 const Login = () => {
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
+const setUser = useUserStore((state) => state.setUser);
+const clearUser = useUserStore((state) => state.clearUser);
 
   const authVerify = async (e) => {
     e.preventDefault();
@@ -30,7 +33,8 @@ const Login = () => {
       const data = await response.json();
       localStorage.setItem("user", JSON.stringify(data.user));
       localStorage.setItem("token", data.token);
-
+    setUser(data.user.id, data.token);
+ 
       console.log("Login successful", JSON.stringify(data.user));
       navigate("/dashboard");
     } catch (err) {

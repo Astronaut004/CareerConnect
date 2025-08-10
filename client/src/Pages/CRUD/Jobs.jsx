@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useUserStore } from "../../store/userstore.js";
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+ const userId = useUserStore((state) => state.userId);
 
   const fetchJobs = async () => {
     try {
@@ -38,6 +40,7 @@ const Jobs = () => {
   if (error) return <div className="text-center mt-10 text-red-500">{error}</div>;
 
   return (
+    
     <div className="min-h-screen bg-amber-50 p-6">
       <div className="bg-white p-6 rounded-lg shadow-md max-w-4xl mx-auto">
         <h2 className="text-3xl font-bold text-center text-teal-700 mb-6">All Jobs</h2>
@@ -46,7 +49,9 @@ const Jobs = () => {
           <p className="text-center text-stone-500">No jobs found.</p>
         ) : (
           <div className="grid grid-cols-1 gap-4">
+            
             {jobs.map((job) => (
+              
               <div
                 key={job.id}
                 className="p-4 border rounded-lg shadow hover:shadow-lg transition bg-amber-100"
@@ -69,6 +74,16 @@ const Jobs = () => {
                 </p>
 
                 <div className="mt-3 flex gap-3">
+                   <Link 
+                    to={`/jobs/apply/${job.id}`} 
+                    className="cursor-pointer px-3 py-1 bg-yellow-600 text-white rounded hover:bg-yellow-700"
+                  >
+                    Apply Job
+                  </Link>
+                      
+                  {parseInt(job.createdBy)=== parseInt(userId) && (
+
+                    <div>
                   <Link 
                     to={`/jobs/update/${job.id}`} 
                     className="cursor-pointer px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600"
@@ -81,13 +96,9 @@ const Jobs = () => {
                   >
                     Remove Job
                   </Link>
-
-                  <Link 
-                    to={`/jobs/apply/${job.id}`} 
-                    className="cursor-pointer px-3 py-1 bg-yellow-600 text-white rounded hover:bg-yellow-700"
-                  >
-                    Apply Job
-                  </Link>
+                  </div>
+                  )}
+                 
                 </div>
               </div>
             ))}
