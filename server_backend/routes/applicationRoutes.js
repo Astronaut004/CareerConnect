@@ -10,9 +10,9 @@ import { applyToJob , getApplications, withdrawApplication} from '../Controllers
     .post(protect, applyToJob)
      .get(protect, getApplications)
 
-//  router
-//  .route('/jobs/apply/:id')
-//     .delete(protect, withdrawApplication);
+  router
+ .route('/jobs/withdraw/:id')
+    .delete(protect, withdrawApplication);
 
 
 // // router.route('/').patch(protect,function)
