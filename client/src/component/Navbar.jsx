@@ -6,15 +6,10 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  // to avoid this use context or redux
-
-
   useEffect(() => {
     const user = localStorage.getItem("user");
     setIsLoggedIn(!!user); // true if user exists
   }, []);
-
-  // useEffect1
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -28,28 +23,30 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-amber-100 text-stone-800 shadow-md">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+    <nav className="fixed w-full top-0 z-50 bg-white/70 backdrop-blur-md shadow-lg">
+      <div className="container mx-auto px-6 py-3 flex justify-between items-center">
         {/* Logo */}
         <Link
           to="/"
-          className="cursor-pointer text-2xl font-extrabold text-emerald-600 hover:text-emerald-700 transition"
+          className="cursor-pointer text-3xl font-extrabold text-indigo-700 hover:text-teal-600 transition-colors"
         >
-          Jobify
+          <div className="text-2xl font-bold text-slate-900">
+              Job<span className="text-blue-600">ify</span>
+            </div>
         </Link>
 
         {/* Desktop Button */}
         {isLoggedIn ? (
           <button
             onClick={handleLogout}
-            className="cursor-pointer hidden md:block bg-emerald-500 text-white px-4 py-2 rounded-lg hover:bg-emerald-600 transition"
+            className="hidden md:block bg-indigo-600 text-white px-6 py-2 rounded-full font-medium shadow-md hover:bg-indigo-700 hover:shadow-lg transition-all duration-300"
           >
             Logout
           </button>
         ) : (
           <Link
             to="/login"
-            className="cursor-pointer hidden md:block bg-amber-500 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition"
+            className="hidden md:block bg-teal-500 text-white px-6 py-2 rounded-full font-medium shadow-md hover:bg-teal-600 hover:shadow-lg transition-all duration-300"
           >
             Login
           </Link>
@@ -58,7 +55,7 @@ const Navbar = () => {
         {/* Mobile Menu Toggle */}
         <button
           onClick={toggleMenu}
-          className="md:hidden text-2xl text-emerald-600 focus:outline-none"
+          className="md:hidden text-3xl text-indigo-700 focus:outline-none"
         >
           ☰
         </button>
@@ -66,18 +63,18 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden px-4 pb-4">
+        <div className="md:hidden px-6 pb-4 space-y-3 bg-gradient-to-r from-indigo-50 to-teal-50 shadow-md rounded-b-xl animate-fadeIn">
           {isLoggedIn ? (
             <button
               onClick={handleLogout}
-              className="w-full bg-emerald-500 text-white px-4 py-2 rounded-lg hover:bg-emerald-600 transition"
+              className="w-full bg-indigo-600 text-white px-6 py-2 rounded-full font-medium shadow-md hover:bg-indigo-700 hover:shadow-lg transition-all duration-300"
             >
               Logout
             </button>
           ) : (
             <Link
               to="/login"
-              className="w-full block bg-amber-500 text-white px-4 py-2 rounded-lg text-center hover:bg-amber-600 transition"
+              className="w-full block bg-teal-500 text-white px-6 py-2 rounded-full font-medium shadow-md text-center hover:bg-teal-600 hover:shadow-lg transition-all duration-300"
             >
               Login
             </Link>
