@@ -22,7 +22,7 @@ export const createJob = async (req, res) => {
 //get all job
 export const getJobs = async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM jobs ');
+    const result = await pool.query('SELECT * FROM jobs ORDER BY created_at DESC');
     res.status(200).json(result.rows);
   } catch (err) {
     console.error(err);
