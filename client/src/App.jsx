@@ -1,63 +1,77 @@
-import { useState } from 'react'
-import './App.css'
-import Navbar from './component/Navbar'
-// import {BrowserRoute} from <react-router-dom>  </react-router-dom>
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Footer from './component/Footer';
-import About from './Pages/About'
-import Applications from './Pages/Applications'
-import Contact from './Pages/Contact'
-import Home from './Pages/Home'
-// import JobDetails from './Pages/JobDetails'
-import Login from './Pages/Login'
-import Register from './Pages/Register';
-import Index from './Pages/Index';
-import Jobs from './Pages/CRUD/Jobs';
-import JobsDel from './Pages/CRUD/JobsDel'
-import JobsCreat from './Pages/CRUD/JobsCreat'
+import './App.css'
+
+// Components
+import SaasNavbar from './component/SaasNavbar'
+import ProfessionalFooter from './component/ProfessionalFooter'
+import ScrollToTop from './component/ScrollToTop'
+
+// Pages
+import SaasLandingMotion from './Pages/SaasLandingMotion'
+import ProfessionalLogin from './Pages/ProfessionalLogin'
+import ProfessionalRegister from './Pages/ProfessionalRegister'
+import NotFound from './Pages/NotFound'
+import JobSeeker from './Pages/JobSeeker'
+
+// Company Pages
+import CompanyDashboard from './Pages/Company/CompanyDashboard'
+import CompanyJobList from './Pages/Company/CompanyJobList'
+import CompanySettings from './Pages/Company/CompanySettings'
+
+// Job Seeker Pages
 import JobsApply from './Pages/CRUD/JobsApply'
 import JobsUpd from './Pages/CRUD/JobsUpd'
-import NotFound from './Pages/NotFound';
+import JobsDel from './Pages/CRUD/JobsDel'
+import JobsCreat from './Pages/CRUD/JobsCreat'
+import Applications from './Pages/Applications'
+import Index from './Pages/Index'
+
+// Legacy Pages (kept for compatibility)
+import About from './Pages/About'
+import Contact from './Pages/Contact'
+import Login from './Pages/Login'
+import Register from './Pages/Register'
+import Home from './Pages/Home'
+
 function App() {
-  const [count, setCount] = useState(0);
-
-// About --> /about
-// Applications -> /Application
-// Contact --> /contact
-// JobDetails  --> /job-details
-// Jobs --> /job
-// Login --> /login
-// // NotFound --> 
-// postjob --> /post-job
-// profile --> /profile
-// register --> /register
-
-
   return (
-    <>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path='/' element= {<Home/>} />
-          <Route path='/about' element= {<About/>} />
-          <Route path='/login' element= {<Login />} />
-          <Route path='/register' element= {<Register />} />
-          <Route path='/job' element={<Jobs  />}/>
-          <Route path='/dashboard' element={<Index  />}/>
-          <Route path='/jobs/create' element={<JobsCreat  />}/>
-          <Route path='/jobs/apply/:id' element={<JobsApply  />}/>
-          <Route path='/jobs/update/:id' element={<JobsUpd />}/>
-          <Route path='/jobs/delete/:id' element={<JobsDel  />}/>
-          <Route path='/jobs' element={<Jobs />} />  
-          <Route path='/applications' element={<Applications  />}/>
+    <BrowserRouter>
+      <ScrollToTop />
+      <div className="min-h-screen flex flex-col">
+        <SaasNavbar />
+        <main className="flex-grow">
+          <Routes>
+            {/* Public Routes */}
+            <Route path='/' element={<SaasLandingMotion />} />
+            <Route path='/login' element={<ProfessionalLogin />} />
+            <Route path='/register' element={<ProfessionalRegister />} />
 
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-      <Footer />
-      {/* <Home /> */}
-    </>
+            {/* Company Routes */}
+            <Route path='/company/dashboard' element={<CompanyDashboard />} />
+            <Route path='/company/jobs' element={<CompanyJobList />} />
+            <Route path='/company/settings' element={<CompanySettings />} />
+
+            {/* Job Seeker Routes */}
+            <Route path='/jobs' element={<JobSeeker />} />
+            <Route path='/jobs/create' element={<JobsCreat />} />
+            <Route path='/jobs/apply/:id' element={<JobsApply />} />
+            <Route path='/jobs/update/:id' element={<JobsUpd />} />
+            <Route path='/jobs/delete/:id' element={<JobsDel />} />
+            <Route path='/applications' element={<Applications />} />
+            <Route path='/profile' element={<Index />} />
+
+            {/* Legacy Routes (for backward compatibility) */}
+            <Route path='/about' element={<About />} />
+            <Route path='/contact' element={<Contact />} />
+            <Route path='/dashboard' element={<Index />} />
+
+            {/* 404 */}
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </main>
+        <ProfessionalFooter />
+      </div>
+    </BrowserRouter>
   )
 }
 

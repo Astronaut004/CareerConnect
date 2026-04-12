@@ -39,7 +39,7 @@ const Navbar = () => {
         {isLoggedIn ? (
           <button
             onClick={handleLogout}
-            className="hidden md:block bg-indigo-600 text-white px-6 py-2 rounded-full font-medium shadow-md hover:bg-indigo-700 hover:shadow-lg transition-all duration-300"
+            className="hidden md:block bg-blue-600 text-white px-6 py-2 rounded-full font-medium shadow-md hover:bg-blue-700 hover:shadow-lg transition-all duration-300"
           >
             Logout
           </button>
@@ -55,7 +55,7 @@ const Navbar = () => {
         {/* Mobile Menu Toggle */}
         <button
           onClick={toggleMenu}
-          className="md:hidden text-3xl text-indigo-700 focus:outline-none"
+          className="md:hidden text-3xl text-blue-700 focus:outline-none"
         >
           ☰
         </button>
@@ -63,11 +63,11 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden px-6 pb-4 space-y-3 bg-gradient-to-r from-indigo-50 to-teal-50 shadow-md rounded-b-xl animate-fadeIn">
+        <div className="md:hidden px-6 pb-4 space-y-3 bg-gradient-to-r from-blue-50 to-teal-50 shadow-md rounded-b-xl animate-fadeIn">
           {isLoggedIn ? (
             <button
               onClick={handleLogout}
-              className="w-full bg-indigo-600 text-white px-6 py-2 rounded-full font-medium shadow-md hover:bg-indigo-700 hover:shadow-lg transition-all duration-300"
+              className="w-full bg-blue-600 text-white px-6 py-2 rounded-full font-medium shadow-md hover:bg-blue-700 hover:shadow-lg transition-all duration-300"
             >
               Logout
             </button>

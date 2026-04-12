@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --cc-bg: #f4f7fb;
+  --cc-surface: #ffffff;
+  --cc-surface-muted: #f8fafc;
+  --cc-text: #0f172a;
+  --cc-text-soft: #475569;
+  --cc-border: #d7dee7;
+  --cc-accent: #1e3a5f;
+  --cc-accent-soft: #dbe6f3;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cc-bg);
+  color: var(--cc-text);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Professional Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFrom {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slideIn {
+  animation: slideInFrom 0.3s ease-out;
+}
+
+/* Gradients */
+.bg-gradient-saas {
+  background: linear-gradient(135deg, #1e3a5f 0%, #3c6382 100%);
+}
+
+/* Cards */
+.card-hover {
+  @apply transition-all duration-200 hover:shadow-lg hover:scale-105;
+}
+
+/* Text Utilities */
+.text-gradient {
+  @apply bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent;
+}
+
+/* Professional Focus States */
+input:focus,
+textarea:focus,
+select:focus {
+  @apply border-slate-400 ring-2 ring-slate-200;
+}
+
+/* Utility Classes */
+.safe-area-inset-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}

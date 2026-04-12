@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { User, Mail, Lock, Eye, EyeOff, ArrowRight, CheckCircle, Shield, Clock } from "lucide-react";
+import { designSystem } from "../config/designSystem";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -50,7 +51,7 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-teal-50">
       {/* Navigation Header */}
       <nav className="absolute top-0 left-0 right-0 z-10 px-8 py-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -58,7 +59,7 @@ const Register = () => {
             Job<span className="text-blue-600">ify</span>
           </button>
           <div className="flex items-center space-x-4">
-            <span className="text-slate-600">Already have an account?</span>
+            <span className={designSystem.typography.bodySm}>Already have an account?</span>
             <button
               onClick={() => navigate("/login")}
               className="text-blue-600 hover:text-blue-700 font-medium transition-colors"
@@ -118,15 +119,15 @@ const Register = () => {
         {/* Right Side - Registration */}
         <div className="w-full lg:w-1/2 flex items-center justify-center px-8">
           <div className="w-full max-w-md">
-            <div className="bg-white rounded-2xl shadow-2xl p-8 border border-slate-100">
+            <div className={`${designSystem.cards.elevated} p-8`}>
               {/* Header */}
               <div className="text-center mb-8 lg:hidden">
-                <h2 className="text-2xl font-bold text-slate-900 mb-2">Join Jobify Today</h2>
-                <p className="text-slate-600">Create your account to get started</p>
+                <h2 className={`${designSystem.typography.h3} mb-2`}>Join Jobify Today</h2>
+                <p className={designSystem.typography.bodySm}>Create your account to get started</p>
               </div>
               <div className="hidden lg:block text-center mb-8">
-                <h2 className="text-3xl font-bold text-slate-900 mb-2">Create Account</h2>
-                <p className="text-slate-600">Get started with your free account</p>
+                <h2 className={`${designSystem.typography.h2} mb-2`}>Create Account</h2>
+                <p className={designSystem.typography.body}>Get started with your free account</p>
               </div>
 
               {/* Form */}
@@ -140,9 +141,9 @@ const Register = () => {
                       type="text"
                       value={name}
                       onChange={(e) => { setName(e.target.value); if (errors.name) setErrors({...errors, name: ""}); }}
-                      placeholder="Enter your full name"
-                      className={`w-full pl-12 pr-4 py-3.5 border rounded-xl focus:outline-none focus:ring-2 transition-all ${
-                        errors.name ? "border-red-300 focus:ring-red-500" : "border-slate-300 focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="John Doe"
+                      className={`${designSystem.inputs.base} pl-12 ${
+                        errors.name ? "border-red-300 focus:ring-red-500" : ""
                       }`}
                       required
                     />
@@ -159,9 +160,9 @@ const Register = () => {
                       type="email"
                       value={mail}
                       onChange={(e) => { setMail(e.target.value); if (errors.mail) setErrors({...errors, mail: ""}); }}
-                      placeholder="Enter your email"
-                      className={`w-full pl-12 pr-4 py-3.5 border rounded-xl focus:outline-none focus:ring-2 transition-all ${
-                        errors.mail ? "border-red-300 focus:ring-red-500" : "border-slate-300 focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="you@example.com"
+                      className={`${designSystem.inputs.base} pl-12 ${
+                        errors.mail ? "border-red-300 focus:ring-red-500" : ""
                       }`}
                       required
                     />
@@ -178,16 +179,16 @@ const Register = () => {
                       type={showPassword ? "text" : "password"}
                       value={pass}
                       onChange={(e) => { setPass(e.target.value); if (errors.pass) setErrors({...errors, pass: ""}); }}
-                      placeholder="Create a password"
-                      className={`w-full pl-12 pr-12 py-3.5 border rounded-xl focus:outline-none focus:ring-2 transition-all ${
-                        errors.pass ? "border-red-300 focus:ring-red-500" : "border-slate-300 focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="At least 6 characters"
+                      className={`${designSystem.inputs.base} pl-12 pr-12 ${
+                        errors.pass ? "border-red-300 focus:ring-red-500" : ""
                       }`}
                       required
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute top-3.5 right-4 text-slate-400 hover:text-slate-600"
+                      className="absolute top-3.5 right-4 text-slate-400 hover:text-slate-600 transition-colors"
                     >
                       {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                     </button>
@@ -207,7 +208,7 @@ const Register = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className={`w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-3.5 rounded-xl font-semibold shadow-lg transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center ${
+                  className={`w-full ${designSystem.buttons.primaryLg} flex items-center justify-center ${
                     isLoading ? "opacity-70 cursor-not-allowed" : ""
                   }`}
                 >
@@ -223,8 +224,8 @@ const Register = () => {
               </form>
 
               {/* Sign In Link */}
-              <div className="text-center mt-3 pt-6 border-t border-slate-200">
-                <p className="text-slate-600">
+              <div className="text-center mt-6 pt-6 border-t border-slate-200">
+                <p className={designSystem.typography.body}>
                   Already have an account?{" "}
                   <Link to="/login" className="text-blue-600 font-semibold hover:text-blue-700 transition-colors">
                     Sign in

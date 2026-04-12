@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useUserStore } from "../../store/userstore.js";
 import { Briefcase, Clock, Filter, ArrowLeft } from "lucide-react";
+import { designSystem } from "../../config/designSystem";
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -84,9 +85,9 @@ const Jobs = () => {
           {/* Back Button Below Filters */}
           <Link
             to="/dashboard"
-            className="flex items-center justify-center gap-2 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-900 font-semibold py-3 px-6 rounded-full shadow-lg transition transform hover:scale-105 mt-4"
+            className={`flex items-center justify-center gap-2 ${designSystem.buttons.primary} w-full`}
           >
-            <ArrowLeft className="w-4 h-4" /> Back to Dashboard
+            <ArrowLeft className="w-4 h-4" /> Back
           </Link>
         </aside>
 
